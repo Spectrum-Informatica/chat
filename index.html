@@ -308,7 +308,7 @@
     </main>
     <input type="hidden" id="proveedorSeleccionado" name="proveedor">
 <input type="hidden" id="opcionSeleccionada" name="opcion">
-
+<input type="hidden" id="nombrePuesto" name="nombre">
     <section class="opciones">
         <div class="opcion" id="luz-option">
             <div class="icono">
@@ -542,6 +542,9 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
 
             const calculadoraAhorro = document.getElementById('calcular-ahorro');
             calculadoraAhorro.style.display = "block";
+
+            const nombrePuesto = document.getElementById('nombrePuesto');
+            nombrePuesto.value = nombreCompleto;
         })
         .catch(function (error) {
             console.error("Error al enviar el correo", error);
@@ -584,9 +587,10 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
                 clearInterval(interval);
 
                 // Configurar los datos que deseas enviar por EmailJS, incluyendo el valor de dispositivosSeleccionados
+                const nombrePuesto2 = document.getElementById('nombrePuesto').value;
                 const datos = {
                     dispositivos: dispositivosSeleccionados,
-                    nombreCompleto: nombreCompleto,
+                    nombreCompleto: nombrePuesto2,
                 };
 
                 // Enviar el correo utilizando EmailJS
