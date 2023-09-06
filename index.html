@@ -306,6 +306,9 @@
             </div>
         </div>
     </main>
+    <input type="hidden" id="proveedorSeleccionado" name="proveedor">
+<input type="hidden" id="opcionSeleccionada" name="opcion">
+
     <section class="opciones">
         <div class="opcion" id="luz-option">
             <div class="icono">
@@ -557,7 +560,7 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 
 
 
-   // Agrega un evento de escucha al formulario
+// Agrega un evento de escucha al formulario
 document.querySelector("#miFormulario").addEventListener("submit", function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
@@ -567,12 +570,18 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
     const email = document.querySelector("#email").value;
     const empresa = document.querySelector("#empresa").value;
 
-    // Configura los datos que deseas enviar
+    // Obtén los valores de textoProveedor y textoOpcion (supongo que los obtienes de algún lugar)
+    const textoProveedor = obtenerTextoProveedor(); // Reemplaza con la lógica para obtener el valor
+    const textoOpcion = obtenerTextoOpcion(); // Reemplaza con la lógica para obtener el valor
+
+    // Configura los datos que deseas enviar, incluyendo los valores de textoProveedor y textoOpcion
     const datos = {
         nombreCompleto,
         telefono,
         email,
         empresa,
+        textoProveedor,
+        textoOpcion
     };
 
     // Envia el correo utilizando EmailJS
@@ -616,6 +625,16 @@ src="https://www.facebook.com/tr?id=748074155966669&ev=PageView&noscript=1"
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
         h._hjSettings={hjid:3635951,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3642834,hjsv:6};
         a=o.getElementsByTagName('head')[0];
         r=o.createElement('script');r.async=1;
         r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
