@@ -395,10 +395,16 @@
     </div>
     <section class="calcular-ahorro chat-container" id="calcular-ahorro" style="display:none">
     <h2>Calcular Ahorro</h2>
-    <label for="factura-file">Añade Tu última factura</label>
-    <input type="file" id="adjunto" name="adjunto" accept=".pdf, .png, .jpg, .jpeg" required>
+    <label for="dispositivos-select">Selecciona la cantidad de dispositivos a cubrir:</label>
+    <select id="dispositivos-select" name="dispositivos" required>
+        <option value="1">1 dispositivo</option>
+        <option value="5">5 dispositivos</option>
+        <option value="20">20 dispositivos</option>
+        <option value="35">35 dispositivos</option>
+        <option value="36">+35 dispositivos</option>
+    </select>
 
-    <button id="calcular-button">Calculadora de Ahorro</button>
+    <button id="calcular-button">Presupuestar Ahora</button>
     <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
     </div>
@@ -498,76 +504,7 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
         });
 
 
-   document.addEventListener('DOMContentLoaded', function () {
-    const facturaFileInput = document.getElementById('adjunto'); // Cambia el ID para que coincida con tu campo de entrada de archivo
-    const calcularButton = document.getElementById('calcular-button');
-    const progressBar = document.getElementById('progress-bar');
-    const popup = document.getElementById('popup');
-    const cerrarPopup = document.getElementById('cerrarPopup');
-
-    calcularButton.addEventListener('click', function () {
-        // Verificar si se ha seleccionado un archivo
-        if (!facturaFileInput.files.length) {
-            alert('Por favor, selecciona un archivo antes de calcular el ahorro.');
-            return;
-        }
-
-        // Deshabilitar el botón mientras se procesa
-        calcularButton.disabled = true;
-        facturaFileInput.disabled = true;
-
-        // Simular la carga de la factura
-        simulateInvoiceUpload();
-    });
-
-    cerrarPopup.addEventListener('click', function () {
-        popup.style.display = 'none';
-    });
-
-    // Función para simular la carga de la factura
-    function simulateInvoiceUpload() {
-        let progress = 0;
-        const interval = setInterval(function () {
-            progress += 1;
-            progressBar.style.width = progress + '%';
-
-            if (progress >= 100) {
-                clearInterval(interval);
-
-                // Obtener el archivo seleccionado
-                const file = facturaFileInput.files[0];
-
-                // Configurar los datos que deseas enviar por EmailJS
-                const datos = {
-                    adjunto: {
-                        name: file.name,
-                        type: file.type,
-                        data: file,
-                    },
-                };
-
-                // Enviar el correo utilizando EmailJS
-                emailjs.send("service_47olrky", "template_sx78vet", datos) // Reemplaza con tus IDs de servicio y plantilla
-                    .then(function (response) {
-                        console.log("Correo enviado con éxito", response);
-
-                        // Mostrar el popup cuando la barra de progreso llega al 100%
-                        popup.style.display = 'flex';
-                    })
-                    .catch(function (error) {
-                        console.error("Error al enviar el correo", error);
-                        // Aquí puedes agregar lógica para manejar errores
-                    });
-            }
-        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
-    }
-});
-
-
-
-
-
-// Agrega un evento de escucha al formulario
+        // Agrega un evento de escucha al formulario
 document.querySelector("#miFormulario").addEventListener("submit", function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
@@ -611,6 +548,69 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
             // Aquí puedes agregar lógica para manejar errores
         });
 });
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const dispositivosSelect = document.getElementById('dispositivos-select');
+    const calcularButton = document.getElementById('calcular-button');
+    const progressBar = document.getElementById('progress-bar');
+    const popup = document.getElementById('popup');
+    const cerrarPopup = document.getElementById('cerrarPopup');
+
+    calcularButton.addEventListener('click', function () {
+        // Obtener el valor seleccionado en el select
+        const dispositivosSeleccionados = dispositivosSelect.value;
+
+        // Deshabilitar el botón mientras se procesa
+        calcularButton.disabled = true;
+        dispositivosSelect.disabled = true;
+
+        // Simular la carga y procesamiento
+        simulateCalculation(dispositivosSeleccionados);
+    });
+
+    cerrarPopup.addEventListener('click', function () {
+        popup.style.display = 'none';
+    });
+
+    // Función para simular el cálculo y el envío por EmailJS
+    function simulateCalculation(dispositivosSeleccionados) {
+        let progress = 0;
+        const interval = setInterval(function () {
+            progress += 1;
+            progressBar.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+
+                // Configurar los datos que deseas enviar por EmailJS, incluyendo el valor de dispositivosSeleccionados
+                const datos = {
+                    dispositivos: dispositivosSeleccionados,
+                    nombreCompleto: nombreCompleto,
+                };
+
+                // Enviar el correo utilizando EmailJS
+                emailjs.send("service_47olrky", "template_sx78vet", datos) // Reemplaza con tus IDs de servicio y plantilla
+                    .then(function (response) {
+                        console.log("Correo enviado con éxito", response);
+
+                        // Mostrar el popup cuando la barra de progreso llega al 100%
+                        popup.style.display = 'flex';
+                    })
+                    .catch(function (error) {
+                        console.error("Error al enviar el correo", error);
+                        // Aquí puedes agregar lógica para manejar errores
+                    });
+            }
+        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
+    }
+});
+
+
+
+
+
+
 
     </script>
 <script>
