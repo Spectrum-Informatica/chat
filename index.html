@@ -299,10 +299,10 @@
      <main>
         <div class="chat-container">
             <div class="chat-message">
-                <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de prevención  más barata ⚡️</p>
+                <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de prevención que mejor se adapte a tu empresa ⚡️</p>
             </div>
             <div class="chat-message">
-                <p>¿En qué quieres ahorrar? 😊</p>
+                <p>¿qué dispositivos te gustaría cubrir en tu empresa? 😊</p>
             </div>
         </div>
     </main>
@@ -311,19 +311,25 @@
             <div class="icono">
                 <img src="energia.png" alt="Luz">
             </div>
-            <span>Luz</span>
+            <span>Ordenadores</span>
         </div>
         <div class="opcion">
             <div class="icono" id="gas-option">
                 <img src="fuego.png" alt="Gas">
             </div>
-            <span>Gas</span>
+            <span>Móviles</span>
         </div>
         <div class="opcion">
             <div class="icono" id="luz-gas-option">
                 <img src="energiaplus.png" alt="Luz + Gas">
             </div>
-            <span>Luz + Gas</span>
+            <span>Faxes</span>
+        </div>
+        <div class="opcion">
+            <div class="icono" id="luz-gas-option">
+                <img src="energiaplus.png" alt="Luz + Gas">
+            </div>
+            <span>Ordenadores + Móviles + otros Dispositivos</span>
         </div>
     </section>
     <section class="proveedores" id="proveedores-luz">
@@ -331,40 +337,40 @@
             <div class="icono">
                 <img src="iberdrola.png" alt="Iberdrola.png">
             </div>
-            <span>Iberdrola</span>
+            <span>Especialista disponible 24/7</span>
         </div>
         <div class="proveedor">
             <div class="icono">
                 <img src="endesa.png" alt="Endesa">
             </div>
-            <span>Endesa</span>
+            <span>Especialista disponible 4h a la semana</span>
         </div>
         <div class="proveedor">
             <div class="icono">
                 <img src="naturgy.png" alt="Naturgy">
             </div>
-            <span>Naturgy</span>
+            <span>Ciberseguridad</span>
         </div>
         <div class="proveedor">
             <div class="icono">
                 <img src="repsol.png" alt="Repsol">
             </div>
-            <span>Repsol</span>
+            <span>Tarifa plana personalizada</span>
         </div>
         <div class="proveedor">
             <div class="icono">
                 <img src="ganaenergia.png" alt="Gana Energía">
             </div>
-            <span>Gana Energía</span>
+            <span>Copias de seguridad</span>
         </div>
         <div class="proveedor">
             <div class="icono">
                 <img src="totalenergies.png" alt="Totalenergies">
             </div>
-            <span>Totalenergies</span>
+            <span>Mantenimiento preventivo</span>
         </div>
         <div class="proveedor">
-            <span>Otro</span>
+            <span>Todas</span>
         </div>
     </section>
 <section class="formulario chat-container" id="formulario-proveedor">
@@ -441,7 +447,7 @@ const nuevoMensajeTexto = document.createElement('div');
 nuevoMensajeTexto.classList.add('chat-container'); // Agregar la clase 'chat-container'
 const nuevoMensajeInterno = document.createElement('div');
 nuevoMensajeInterno.classList.add('chat-message');
-nuevoMensajeInterno.innerHTML = "<p>¿Cuál es tu proveedor de energía actual? 😊</p>";
+nuevoMensajeInterno.innerHTML = "<p>¿Qué tipo de servicio buscas? 😊</p>";
 nuevoMensajeTexto.appendChild(nuevoMensajeInterno);
 
 // Insertar el nuevo mensaje del proveedor de energía
