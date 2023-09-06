@@ -314,7 +314,7 @@
             <div class="icono">
                 <img src="ordenador.png" alt="Luz">
             </div>
-            <span>Ordenadores</span>
+            <span>PC</span>
         </div>
         <div class="opcion">
             <div class="icono" id="gas-option">
@@ -438,6 +438,10 @@ emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_user_id" con tu ID de usuari
         nuevoMensaje.innerHTML = `<p>${textoOpcion}</p>`;
         nuevoChatContainer.appendChild(nuevoMensaje);
 
+
+        const opcionSeleccionada = document.getElementById('opcionSeleccionada');
+                opcionSeleccionada.value = textoOpcion; 
+
         // Insertar el nuevo contenedor antes del contenedor de opciones
         opcionesSection.parentElement.insertBefore(nuevoChatContainer, opcionesSection);
 
@@ -481,6 +485,9 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
                 const chatMessageElement = document.createElement('div');
                 chatMessageElement.classList.add('chat-message', 'user-message');
                 chatMessageElement.innerHTML = `<p>${textoProveedor}</p>`;
+
+                const proveedorSeleccionado = document.getElementById('proveedorSeleccionado');
+                proveedorSeleccionado.value = textoProveedor; 
 
                 // Adjuntar el elemento .chat-message .user-message al elemento .none2
                 none2Element.appendChild(chatMessageElement);
@@ -571,8 +578,8 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
     const empresa = document.querySelector("#empresa").value;
 
     // Obtén los valores de textoProveedor y textoOpcion (supongo que los obtienes de algún lugar)
-    const textoProveedor = obtenerTextoProveedor(); // Reemplaza con la lógica para obtener el valor
-    const textoOpcion = obtenerTextoOpcion(); // Reemplaza con la lógica para obtener el valor
+    const textoProveedor = document.getElementById('proveedorSeleccionado').value;
+    const textoOpcion = document.getElementById('opcionSeleccionada').value;
 
     // Configura los datos que deseas enviar, incluyendo los valores de textoProveedor y textoOpcion
     const datos = {
