@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo-stiki.png">
+
+    <title>Ahorro Direct</title>
+    <meta name="description" content="Tu fuente de información sobre ahorro directo.">
+    <style>
+        /* Estilos generales */
+        body {
+            background-color: #A33034;
+            font-family: 'Varela Round', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* Estilos para el encabezado */
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #user-status {
+            display: flex;
+            align-items: center;
+        }
+
+        #user-status img {
+            width: 50px;
+            height: 50px;
+            margin-right: 5px;
+            border-radius: 30px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        main {
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para el chat */
+        .chat-container {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+            margin: 20px auto;
+        }
+
+        .chat-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #dcf8c6;
+    /* float: right; */
+    margin: 20px auto;
+    width: 80%;
+    right: 0;
+    text-align: right;
+    padding: 5px;
+        }
+
+        .chat-message img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .chat-message p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        /* Estilos para las opciones */
+        .opciones {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .opcion {
+            width: 30%;
+            text-align: center;
+            border: 1px solid red;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        /* Agregar estilos al hacer hover */
+        .opcion:hover {
+            transform: scale(1.05); /* Aumentar el tamaño al hacer hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregar sombra al hacer hover */
+        }
+
+        .icono img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+       /* Estilos para la sección de proveedores */
+.proveedores {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 10px;
+}
+
+/* Estilos para los proveedores */
+.proveedor {
+     display: flex; /* Añadir display flex */
+    flex-direction: column; /* Para que los elementos se apilen verticalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    text-align: center;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border-radius: 10px; /* Añadir un borde redondeado */
+    border: 1px solid red; /* Añadir un borde sólido rojo */
+    width: 90%;
+    
+}
+
+.proveedor:hover {
+    transform: scale(1.05); /* Aumentar el tamaño al hacer hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregar sombra al hacer hover */
+}
+
+.proveedor img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+        /* Estilos para el formulario */
+.formulario {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 10px;
+}
+
+.formulario input {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formulario button:hover {
+    background-color: #2980b9;
+}
+
+
+.calcular-ahorro h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.calcular-ahorro label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.calcular-ahorro input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.calcular-ahorro button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.calcular-ahorro button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para la barra de progreso */
+.progress-container {
+    margin-top: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #3498db;
+    transition: width 1s linear;
+}
+
+   .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.popup img {
+    max-width: 100%;
+    height: auto;
+}
+
+.popup button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.popup button:hover {
+    background-color: #2980b9;
+}
+     
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="user-status">
+            <img src="asesor-energetico.jpg" alt="Usuario Conectado">
+            <h1>Iván, Asesor Energético</h1>
+        </div>
+        <h1>Chat en Línea</h1>
+    </header>
+     <main>
+        <div class="chat-container">
+            <div class="chat-message">
+                <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de energía más barata ⚡️</p>
+            </div>
+            <div class="chat-message">
+                <p>¿En qué quieres ahorrar? 😊</p>
+            </div>
+        </div>
+    </main>
+    <section class="opciones">
+        <div class="opcion" id="luz-option">
+            <div class="icono">
+                <img src="energia.png" alt="Luz">
+            </div>
+            <span>Luz</span>
+        </div>
+        <div class="opcion">
+            <div class="icono" id="gas-option">
+                <img src="fuego.png" alt="Gas">
+            </div>
+            <span>Gas</span>
+        </div>
+        <div class="opcion">
+            <div class="icono" id="luz-gas-option">
+                <img src="energiaplus.png" alt="Luz + Gas">
+            </div>
+            <span>Luz + Gas</span>
+        </div>
+    </section>
+    <section class="proveedores" id="proveedores-luz">
+        <div class="proveedor">
+            <div class="icono">
+                <img src="iberdrola.png" alt="Iberdrola.png">
+            </div>
+            <span>Iberdrola</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="endesa.png" alt="Endesa">
+            </div>
+            <span>Endesa</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="naturgy.png" alt="Naturgy">
+            </div>
+            <span>Naturgy</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="repsol.png" alt="Repsol">
+            </div>
+            <span>Repsol</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="ganaenergia.png" alt="Gana Energía">
+            </div>
+            <span>Gana Energía</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="totalenergies.png" alt="Totalenergies">
+            </div>
+            <span>Totalenergies</span>
+        </div>
+        <div class="proveedor">
+            <span>Otro</span>
+        </div>
+    </section>
+<section class="formulario chat-container" id="formulario-proveedor">
+    <h2>Completa la información requerida:</h2>
+    <form id="miFormulario">
+        <input type="text" placeholder="Nombre Completo" id="nombre" required>
+        <input type="tel" placeholder="Teléfono" id="telefono" required>
+        <input type="email" placeholder="Email" id="email" required>
+        <input type="text" placeholder="Empresa" id="empresa" required>
+        <button id="enviarFormulario">Enviar</button>
+    </form>
+</section>
+<div id="formulario-enviado" style="display: none;">
+        <div class="chat-container">
+            <div class="chat-message">
+                <p>Formulario Enviado ✔️</p>
+            </div>
+        </div>
+    </div>
+    <section class="calcular-ahorro chat-container" id="calcular-ahorro" style="display:none">
+    <h2>Calcular Ahorro</h2>
+    <label for="factura-file">Añade Tu última factura</label>
+    <input type="file" id="adjunto" name="adjunto" accept=".pdf, .png, .jpg, .jpeg" required>
+
+    <button id="calcular-button">Calculadora de Ahorro</button>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+</section>
+
+    <div id="popup" class="popup">
+    <div class="popup-content">
+        <img src="ahorro.png" alt="Oferta Energética">
+        <h1>Enhorabuena tenemos una oferta energética 🎉🎉</h1>
+        <p>Nuestro Asesor Iván especialista energético se pondrá en contacto contigo</p>
+        <button id="cerrarPopup">Cerrar</button>
+    </div>
+</div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+
+                // Luego de cargar la biblioteca EmailJS
+emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_user_id" con tu ID de usuario de EmailJS
+    </script>
+    <script>
+      const opciones = document.querySelectorAll('.opcion');
+        const proveedoresLuz = document.getElementById('proveedores-luz');
+        const opcionesSection = document.querySelector('.opciones');
+
+        opciones.forEach(opcion => {
+    opcion.addEventListener('click', () => {
+        const textoOpcion = opcion.querySelector('span').textContent;
+
+        // Crear un nuevo contenedor de chat para la opción seleccionada
+        const nuevoChatContainer = document.createElement('div');
+        nuevoChatContainer.classList.add('none');
+
+        // Agregar nuevo mensaje al chat
+        const nuevoMensaje = document.createElement('div');
+        nuevoMensaje.classList.add('chat-message', 'user-message');
+        nuevoMensaje.innerHTML = `<p>${textoOpcion}</p>`;
+        nuevoChatContainer.appendChild(nuevoMensaje);
+
+        // Insertar el nuevo contenedor antes del contenedor de opciones
+        opcionesSection.parentElement.insertBefore(nuevoChatContainer, opcionesSection);
+
+        // Ocultar las opciones y mostrar los proveedores de luz
+        opcionesSection.style.display = 'none';
+        proveedoresLuz.style.display = 'block';
+
+       // Agregar el mensaje "¿Cuál es tu proveedor de energía actual? 😊"
+const nuevoMensajeTexto = document.createElement('div');
+nuevoMensajeTexto.classList.add('chat-container'); // Agregar la clase 'chat-container'
+const nuevoMensajeInterno = document.createElement('div');
+nuevoMensajeInterno.classList.add('chat-message');
+nuevoMensajeInterno.innerHTML = "<p>¿Cuál es tu proveedor de energía actual? 😊</p>";
+nuevoMensajeTexto.appendChild(nuevoMensajeInterno);
+
+// Insertar el nuevo mensaje del proveedor de energía
+opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
+
+    });
+});
+
+        const proveedores = document.querySelectorAll('.proveedor');
+        const formularioProveedor = document.getElementById('formulario-proveedor'); // Obtener el formulario
+
+        proveedores.forEach(proveedor => {
+            proveedor.addEventListener('click', () => {
+                // Ocultar la sección de proveedores de luz
+                proveedoresLuz.style.display = 'none';
+
+                // Mostrar el formulario
+                formularioProveedor.style.display = 'block';
+
+                // Obtener el texto del proveedor clicado
+                const textoProveedor = proveedor.querySelector('span').textContent;
+
+                // Crear un nuevo elemento .none2
+                const none2Element = document.createElement('div');
+                none2Element.classList.add('none2');
+
+                // Crear un nuevo elemento .chat-message .user-message y agregar el texto del proveedor
+                const chatMessageElement = document.createElement('div');
+                chatMessageElement.classList.add('chat-message', 'user-message');
+                chatMessageElement.innerHTML = `<p>${textoProveedor}</p>`;
+
+                // Adjuntar el elemento .chat-message .user-message al elemento .none2
+                none2Element.appendChild(chatMessageElement);
+
+                // Insertar el elemento .none2 antes del formulario
+                formularioProveedor.parentElement.insertBefore(none2Element, formularioProveedor);
+            });
+        });
+
+
+   document.addEventListener('DOMContentLoaded', function () {
+    const facturaFileInput = document.getElementById('adjunto'); // Cambia el ID para que coincida con tu campo de entrada de archivo
+    const calcularButton = document.getElementById('calcular-button');
+    const progressBar = document.getElementById('progress-bar');
+    const popup = document.getElementById('popup');
+    const cerrarPopup = document.getElementById('cerrarPopup');
+
+    calcularButton.addEventListener('click', function () {
+        // Verificar si se ha seleccionado un archivo
+        if (!facturaFileInput.files.length) {
+            alert('Por favor, selecciona un archivo antes de calcular el ahorro.');
+            return;
+        }
+
+        // Deshabilitar el botón mientras se procesa
+        calcularButton.disabled = true;
+        facturaFileInput.disabled = true;
+
+        // Simular la carga de la factura
+        simulateInvoiceUpload();
+    });
+
+    cerrarPopup.addEventListener('click', function () {
+        popup.style.display = 'none';
+    });
+
+    // Función para simular la carga de la factura
+    function simulateInvoiceUpload() {
+        let progress = 0;
+        const interval = setInterval(function () {
+            progress += 1;
+            progressBar.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+
+                // Obtener el archivo seleccionado
+                const file = facturaFileInput.files[0];
+
+                // Configurar los datos que deseas enviar por EmailJS
+                const datos = {
+                    adjunto: {
+                        name: file.name,
+                        type: file.type,
+                        data: file,
+                    },
+                };
+
+                // Enviar el correo utilizando EmailJS
+                emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
+                    .then(function (response) {
+                        console.log("Correo enviado con éxito", response);
+
+                        // Mostrar el popup cuando la barra de progreso llega al 100%
+                        popup.style.display = 'flex';
+                    })
+                    .catch(function (error) {
+                        console.error("Error al enviar el correo", error);
+                        // Aquí puedes agregar lógica para manejar errores
+                    });
+            }
+        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
+    }
+});
+
+
+
+
+
+   // Agrega un evento de escucha al formulario
+document.querySelector("#miFormulario").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    // Obtén los valores de los campos del formulario
+    const nombreCompleto = document.querySelector("#nombre").value;
+    const telefono = document.querySelector("#telefono").value;
+    const email = document.querySelector("#email").value;
+    const empresa = document.querySelector("#empresa").value;
+
+    // Configura los datos que deseas enviar
+    const datos = {
+        nombreCompleto,
+        telefono,
+        email,
+        empresa,
+    };
+
+    // Envia el correo utilizando EmailJS
+    emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
+        .then(function (response) {
+            console.log("Correo enviado con éxito", response);
+             // Oculta el formulario
+            const formularioProveedor = document.querySelector("#formulario-proveedor");
+            formularioProveedor.style.display = "none";
+
+            // Muestra el mensaje de confirmación
+            const formularioEnviado = document.querySelector("#formulario-enviado");
+            formularioEnviado.style.display = "block";
+
+            const calculadoraAhorro = document.getElementById('calcular-ahorro');
+            calculadoraAhorro.style.display = "block";
+        })
+        .catch(function (error) {
+            console.error("Error al enviar el correo", error);
+            // Aquí puedes agregar lógica para manejar errores
+        });
+});
+
+    </script>
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '748074155966669');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=748074155966669&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3635951,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+</body>
+</html>
